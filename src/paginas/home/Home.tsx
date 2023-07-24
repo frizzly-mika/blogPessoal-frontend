@@ -1,13 +1,29 @@
-import React from 'react';
-import './Home.css';
+import { useState, useEffect } from 'react';
 
 function Home() {
-    return(
-        <>
-            <h1 className='titulo'>Home</h1>
-            <img src="https://www.newlyswissed.com/wp-content/uploads/2023/01/Switzerland-Train-Map-Lago-Bianco-247127244-01b.jpg" alt="Imagem Tela Inicial" className='img'/>
-        </>
-    );
+  const [completed, setCompleted] = useState(false);
+  const [tarefa, setTarefa] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (completed) {
+      setTarefa('Parabéns! Você concluiu a tarefa!');
+    }
+  }, [completed]);
+
+  return (
+    <div>
+      <h1>Tarefa</h1>
+      <h3>{tarefa}</h3>
+      <p>Conclua a tarefa</p>
+      <button onClick={() => setCompleted(true)}>Concluir Tarefa</button>
+      {loggedIn ? (
+        <h1>Bem-vindo de volta!</h1>
+      ) : (
+        <button onClick={() => setLoggedIn(true)}>Entrar</button>
+      )}
+    </div>
+  );
 }
 
 export default Home;
